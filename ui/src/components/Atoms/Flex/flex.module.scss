@@ -1,0 +1,30 @@
+.flex-base {
+  display: flex;
+  align-items: center
+}
+  
+.space-between {
+  @extend .flex-base;
+  justify-content: space-between;
+}
+
+.space-around {
+  @extend .flex-base;
+  justify-content: space-around;
+}
+
+.flex-start {
+  @extend .flex-base;
+  justify-content: flex-start;
+}
+
+.flex-end {
+  @extend .flex-base;
+  justify-content: flex-end;
+}
+
+.center {
+  @extend .flex-base;
+  justify-content: center;
+  gap: 2rem;
+}
