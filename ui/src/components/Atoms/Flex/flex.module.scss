@@ -13,12 +13,13 @@
   justify-content: space-around;
 }
 
-.flex-start {
+.start {
   @extend .flex-base;
+  gap: 5px;
   justify-content: flex-start;
 }
 
-.flex-end {
+.end {
   @extend .flex-base;
   justify-content: flex-end;
 }
