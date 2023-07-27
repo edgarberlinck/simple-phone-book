@@ -3,7 +3,7 @@ import styles from './button.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface Props {
-  variant: 'primaty' | 'danger' | 'default'
+  variant: 'primary' | 'danger' | 'default'
   children: React.ReactNode
   onClick: React.MouseEvent<HTMLButtonElement>
   icon?: IconDefinition
@@ -23,7 +23,11 @@ const Button: React.FC<Props> = ({
 
   return (
     <button className={classNames.join(' ')} onClick={onClick}>
-      {icon && <FontAwesomeIcon data-testid="button-icon" icon={icon} />}
+      {icon && (
+        <>
+          <FontAwesomeIcon data-testid="button-icon" icon={icon} />{' '}
+        </>
+      )}
       {!isIconOnly && children}
     </button>
   )

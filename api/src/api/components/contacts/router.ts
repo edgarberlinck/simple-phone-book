@@ -13,6 +13,7 @@ export class ContactRoutes implements IComponentRoutes<ContactController> {
 
   initRoutes(): void {
     this.router.get('/contacts', this.controller.findContacts)
+    this.router.get('/contacts/:id', this.controller.findContact)
     this.router.put('/contacts', this.controller.addContact)
     this.router.post('/contacts/:id', this.controller.updateContact)
     this.router.delete('/contacts/:id', this.controller.deleteContact)

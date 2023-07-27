@@ -28,6 +28,22 @@ export class ContactController {
     }
   }
 
+  async findContact(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void> {
+    try {
+      const { id } = req.params
+      const repo: ContactRepository = new ContactRepository()
+      const contact = await repo.getById(parseInt(id))
+
+      return res.json(contact)
+    } catch (err) {
+      next(err)
+    }
+  }
+
   async addContact(
     req: Request,
     res: Response,

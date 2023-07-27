@@ -21,6 +21,12 @@ export class ContactRepository {
     })
   }
 
+  getById(id: number) {
+    return this.prisma.contact.findUnique({
+      where: { id },
+    })
+  }
+
   add(data: { firstname: string; lastname: string; phonenumber: string }) {
     return this.prisma.contact.create({
       data,

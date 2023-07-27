@@ -13,10 +13,12 @@ import Input from './components/Atoms/Input'
 import ContactCard from './components/Molecules/ContactCard'
 import { Contact } from './types/Contact'
 import ContactList from './components/Molecules/ContactList'
-import useContacts from './hooks/useContacts'
+import { useNavigate } from 'react-router'
+import useContactsStore from './store/contacts.store'
 
 function App() {
-  const { contacts, isFetching, fetch } = useContacts()
+  const fetch = useContactsStore((state) => state.fetch)
+  const contacts = useContactsStore((state) => state.contacts)
 
   useEffect(() => {
     fetch()
@@ -25,6 +27,8 @@ function App() {
   function handleUpdateQuery(event: React.ChangeEvent<HTMLInputElement>) {
     fetch(event.target.value)
   }
+
+  const navigation = useNavigate()
 
   return (
     <>
@@ -35,7 +39,11 @@ function App() {
 
       <Flex justify="space-between">
         <Text variant="subtitle">Contacts</Text>
-        <Button variant="primary" size="lg">
+        <Button
+          variant="primary"
+          size="lg"
+          onClick={() => navigation('/contact')}
+        >
           + Add Contact
         </Button>
       </Flex>
@@ -46,11 +54,7 @@ function App() {
         onChange={handleUpdateQuery}
       />
 
-      {isFetching ? (
-        <FontAwesomeIcon icon={faSpinner} spin />
-      ) : (
-        <ContactList contacts={contacts} />
-      )}
+      <ContactList contacts={contacts} />
     </>
   )
 }

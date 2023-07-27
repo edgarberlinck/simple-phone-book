@@ -4,13 +4,14 @@
   font-family: inherit;
   cursor: pointer;
   transition: border-color 0.25s;
-}
-.button-base:hover {
-  background-color: lighten($color: #1a1a1a, $amount: 2);
-}
-.button-base:focus,
-.button-base:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+  &:hover {
+    background-color: lighten($color: #1a1a1a, $amount: 2);
+  }
+  &:focus,
+  &:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
 }
 
 .primary {

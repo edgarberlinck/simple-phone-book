@@ -5,11 +5,12 @@ import { useRef } from 'react'
 
 interface Props {
   icon?: IconDefinition
+  value?: string | number
   placeholder?: string
   onChange: React.ChangeEvent<HTMLInputElement>
 }
 
-const Input: React.FC<Props> = ({ icon, placeholder, onChange }) => {
+const Input: React.FC<Props> = ({ icon, placeholder, onChange, value }) => {
   const inputRef = useRef<HTMLInputElement>()
 
   function inputFocusControl() {
@@ -25,7 +26,7 @@ const Input: React.FC<Props> = ({ icon, placeholder, onChange }) => {
       {icon && (
         <FontAwesomeIcon
           data-testid="input-icon"
-          icon={faSearch}
+          icon={icon}
           color="#c0c0c0"
           onClick={inputFocusControl}
         />
@@ -34,6 +35,7 @@ const Input: React.FC<Props> = ({ icon, placeholder, onChange }) => {
         data-testid="input"
         ref={inputRef}
         placeholder={placeholder}
+        value={value}
         onChange={onChange}
       />
     </div>

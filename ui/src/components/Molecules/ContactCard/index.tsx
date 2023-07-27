@@ -5,14 +5,30 @@ import Text from '../../Atoms/Text'
 import Flex from '../../Atoms/Flex'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhone, faTrash } from '@fortawesome/free-solid-svg-icons'
+import useContacts from '../../../hooks/useContacts'
+import { useNavigate } from 'react-router'
+import useContactsStore from '../../../store/contacts.store'
 
 interface Props {
   contact: Contact
 }
 
 const ContactCard: React.FC<Props> = ({ contact }) => {
+  const remove = useContactsStore((state) => state.remove)
+  const navigator = useNavigate()
+
+  async function handleDeleteContact(
+    event: React.MouseEvent<HTMLButtonElement>
+  ) {
+    event.stopPropagation()
+    await remove(contact.id)
+  }
+
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={styles.wrapper}
+      onClick={() => navigator(`/contact/${contact.id}`)}
+    >
       <div>
         <Text
           variant="text"
@@ -27,7 +43,12 @@ const ContactCard: React.FC<Props> = ({ contact }) => {
         </Flex>
       </div>
 
-      <Button variant="danger" isIconOnly icon={faTrash}></Button>
+      <Button
+        variant="danger"
+        isIconOnly
+        icon={faTrash}
+        onClick={handleDeleteContact}
+      ></Button>
     </div>
   )
 }
