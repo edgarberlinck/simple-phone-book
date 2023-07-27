@@ -4,10 +4,6 @@
   font-family: inherit;
   cursor: pointer;
   transition: border-color 0.25s;
-
-  &:hover {
-    background-color: lighten($color: #1a1a1a, $amount: 2);
-  }
   &:focus,
   &:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
@@ -17,18 +13,30 @@
 .primary {
   @extend .button-base;
   background-color: #1a1a1a;
-  color: white
+  color: white;
+  
+  &:hover {
+    background-color: lighten($color: #1a1a1a, $amount: 2);
+  }
 }
 
 .danger {
   @extend .button-base;
   background-color: #c70404;
-  color: white
+  color: white;
+
+  &:hover {
+    background-color: lighten($color: #c70404, $amount: 2);
+  }
 }
 
 .default {
   @extend .button-base;
   background-color: #c0c0c0;
+
+  &:hover {
+    background-color: lighten($color: #c0c0c0, $amount: 2);
+  }
 }
 
 .md {

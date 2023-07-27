@@ -42,6 +42,9 @@ const ContactDetails: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
+      <Text variant="subtitle">
+        {params.id ? 'Updating contact' : 'Adding new contact'}
+      </Text>
       <div>
         <Text variant="text" isBold>
           First Name
