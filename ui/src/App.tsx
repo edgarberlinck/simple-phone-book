@@ -1,5 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faContactBook, faSearch } from '@fortawesome/free-solid-svg-icons'
+import {
+  faContactBook,
+  faSearch,
+  faSpinner,
+} from '@fortawesome/free-solid-svg-icons'
 import Button from './components/Atoms/Button'
 import { useEffect, useState } from 'react'
 import client from './lib/client'
@@ -9,13 +13,18 @@ import Input from './components/Atoms/Input'
 import ContactCard from './components/Molecules/ContactCard'
 import { Contact } from './types/Contact'
 import ContactList from './components/Molecules/ContactList'
+import useContacts from './hooks/useContacts'
 
 function App() {
-  const [contacts, setContacts] = useState([])
+  const { contacts, isFetching, fetch } = useContacts()
 
   useEffect(() => {
-    client.get<Contact>('/contacts').then((res) => setContacts(res.data))
+    fetch()
   }, [])
+
+  function handleUpdateQuery(event: React.ChangeEvent<HTMLInputElement>) {
+    fetch(event.target.value)
+  }
 
   return (
     <>
@@ -31,9 +40,17 @@ function App() {
         </Button>
       </Flex>
 
-      <Input icon={faSearch} placeholder="Search for contact by last name..." />
+      <Input
+        icon={faSearch}
+        placeholder="Search for contact by last name..."
+        onChange={handleUpdateQuery}
+      />
 
-      <ContactList contacts={contacts} />
+      {isFetching ? (
+        <FontAwesomeIcon icon={faSpinner} spin />
+      ) : (
+        <ContactList contacts={contacts} />
+      )}
     </>
   )
 }

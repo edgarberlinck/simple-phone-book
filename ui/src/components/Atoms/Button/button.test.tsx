@@ -21,11 +21,11 @@ describe('Button', () => {
     expect(screen.getByText(buttonText)).toBeInTheDocument()
   })
 
-  it('if `isIconOnly` should render the button without text', () => {
+  it('it should render the text', () => {
     expect(screen.getByText(buttonText)).toBeInTheDocument()
   })
 
-  it('should call `onClick` event when the button is clicket', async () => {
+  it('should call `onClick` event when the button is clicked', async () => {
     await userEvent.click(screen.getByText(buttonText))
     expect(onClickEvent.mock.calls).not.toHaveLength(0)
   })

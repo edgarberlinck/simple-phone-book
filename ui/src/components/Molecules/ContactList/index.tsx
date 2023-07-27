@@ -10,7 +10,7 @@ const ContactList: React.FC<Props> = ({ contacts }) => {
   return (
     <div className={styles.wrapper}>
       {contacts.map((contact: Contact) => (
-        <ContactCard contact={contact} />
+        <ContactCard key={contact.id} contact={contact} />
       ))}
     </div>
   )
